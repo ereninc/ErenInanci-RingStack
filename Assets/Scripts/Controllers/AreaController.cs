@@ -59,7 +59,7 @@ public class AreaControllerEditor : Editor
     {
         base.OnInspectorGUI();
 
-        if (GUILayout.Button("CHECK EVERY MOVE"))
+        if (GUILayout.Button("CHECK MOVES"))
         {
             ((AreaController)target).CheckMoves();
         }

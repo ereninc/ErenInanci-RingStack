@@ -8,6 +8,7 @@ public class PlaceableAreaModel : ObjectModel
     public List<RingModel> PlacedRings;
     [SerializeField] Transform[] ringPositions;
     [SerializeField] DummyModel dummyModel;
+    [SerializeField] GhostRingModel ghostRingModel;
     private int correctCounter;
 
     public override void Initialize()
@@ -40,14 +41,6 @@ public class PlaceableAreaModel : ObjectModel
         if (PlacedRings.Count == 0) dummyModel.SetRinged(false);
     }
 
-    private void setRings()
-    {
-        for (int i = 0; i < PlacedRings.Count; i++)
-        {
-            PlacedRings[i].Initialize();
-        }
-    }
-
     public bool CheckAreaRings()
     {
         correctCounter = 0;
@@ -64,6 +57,24 @@ public class PlaceableAreaModel : ObjectModel
             }
         }
         return false;
+    }
+
+    public void ShowGhostRing(int colorId)
+    {
+        ghostRingModel.Show(ringPositions[PlacedRings.Count], colorId);
+    }
+
+    public void HideGhostRing()
+    {
+        ghostRingModel.Hide();
+    }
+
+    private void setRings()
+    {
+        for (int i = 0; i < PlacedRings.Count; i++)
+        {
+            PlacedRings[i].Initialize();
+        }
     }
 }
 

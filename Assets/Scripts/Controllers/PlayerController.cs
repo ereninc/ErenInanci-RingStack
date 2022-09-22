@@ -49,7 +49,10 @@ public class PlayerController : ControllerModel
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>()) { }
+                    if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>())
+                    {
+                        targetPlaceableArea.ShowGhostRing(selectedRing.ColorId);
+                    }
                     selectedRing.OnDrag(hit.point);
                 }
             }
@@ -65,6 +68,7 @@ public class PlayerController : ControllerModel
                     placeableArea.OnRingRemove(selectedRing);
                     targetPlaceableArea.OnRingPlace(selectedRing);
                     AreaController.Instance.CheckMoves();
+                    targetPlaceableArea.HideGhostRing();
                     targetPlaceableArea = null;
                 }
             }

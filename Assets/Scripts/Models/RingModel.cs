@@ -16,7 +16,7 @@ public class RingModel : ObjectModel
 
     public void OnTake()
     {
-        transform.DOMoveY(9f, 0.15f);
+        transform.DOMoveY(10f, 0.15f);
     }
 
     public void OnDrag(Vector3 pos) 
