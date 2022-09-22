@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1451702826068683729}
   - component: {fileID: 311740865}
+  - component: {fileID: 1075948398949395339}
   m_Layer: 0
   m_Name: AllRings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1451702826068683729
 Transform:
   m_ObjectHideFlags: 0
@@ -50,6 +51,26 @@ MonoBehaviour:
   - {fileID: 2976258689251517539}
   - {fileID: 4518501451819516069}
   - {fileID: 7901379404420308156}
+  animator: {fileID: 1075948398949395339}
+--- !u!95 &1075948398949395339
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451702826068683734}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7921fbd996c341459c734892feaf7c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2976258689251517540
 GameObject:
   m_ObjectHideFlags: 0

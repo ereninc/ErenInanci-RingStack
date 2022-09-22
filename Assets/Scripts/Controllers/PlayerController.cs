@@ -19,11 +19,11 @@ public class PlayerController : ControllerModel
         base.ControllerUpdate();
         if (GameStateController.CurrentState == GameStates.Game)
         {
-            getMouseInput();
+            moveRings();
         }
     }
 
-    private void getMouseInput()
+    private void moveRings()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -63,13 +63,30 @@ public class PlayerController : ControllerModel
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
+                if (targetPlaceableArea == null)
+                {
+                    placeableArea.OnRingPlace(selectedRing);
+                    placeableArea.HideGhostRing();
+                    AreaController.Instance.CheckMoves();
+                }
+
                 if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>())
                 {
                     placeableArea.OnRingRemove(selectedRing);
-                    targetPlaceableArea.OnRingPlace(selectedRing);
-                    AreaController.Instance.CheckMoves();
-                    targetPlaceableArea.HideGhostRing();
-                    targetPlaceableArea = null;
+                    if (targetPlaceableArea.PlacedRings.Count >= 5)
+                    {
+                        placeableArea.OnRingPlace(selectedRing);
+                        placeableArea.HideGhostRing();
+                        AreaController.Instance.CheckMoves();
+                        targetPlaceableArea = null;
+                    }
+                    else
+                    {
+                        targetPlaceableArea.OnRingPlace(selectedRing);
+                        AreaController.Instance.CheckMoves();
+                        targetPlaceableArea.HideGhostRing();
+                        targetPlaceableArea = null;
+                    }
                 }
             }
             placeableArea = null;

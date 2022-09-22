@@ -17,11 +17,6 @@ public class PlaceableAreaModel : ObjectModel
         setRings();
     }
 
-    public RingModel GetRing()
-    {
-        return PlacedRings[PlacedRings.Count - 1];
-    }
-
     public void OnRingPlace(RingModel ring)
     {
         if (PlacedRings.Count < 5)
@@ -39,6 +34,11 @@ public class PlaceableAreaModel : ObjectModel
             PlacedRings.Remove(ring);
         }
         if (PlacedRings.Count == 0) dummyModel.SetRinged(false);
+    }
+
+    public RingModel GetRing()
+    {
+        return PlacedRings[PlacedRings.Count - 1];
     }
 
     public bool CheckAreaRings()
@@ -61,7 +61,8 @@ public class PlaceableAreaModel : ObjectModel
 
     public void ShowGhostRing(int colorId)
     {
-        ghostRingModel.Show(ringPositions[PlacedRings.Count], colorId);
+        if (PlacedRings.Count <= 4) 
+            ghostRingModel.Show(ringPositions[PlacedRings.Count], colorId);
     }
 
     public void HideGhostRing()
@@ -75,6 +76,11 @@ public class PlaceableAreaModel : ObjectModel
         {
             PlacedRings[i].Initialize();
         }
+    }
+
+    private void onFailMove() 
+    {
+        
     }
 }
 

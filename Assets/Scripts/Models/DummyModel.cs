@@ -7,11 +7,6 @@ public class DummyModel : ObjectModel
     [SerializeField] Animator animator;
     [SerializeField] bool isRinged;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-
     public void OnComplete()
     {
         if (isRinged)

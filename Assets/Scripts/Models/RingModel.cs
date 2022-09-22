@@ -7,6 +7,7 @@ public class RingModel : ObjectModel
 {
     public int ColorId;
     [SerializeField] Transform[] gfxs;
+    [SerializeField] Animator animator;
 
     public override void Initialize()
     {
@@ -19,15 +20,16 @@ public class RingModel : ObjectModel
         transform.DOMoveY(10f, 0.15f);
     }
 
-    public void OnDrag(Vector3 pos) 
+    public void OnDrag(Vector3 pos)
     {
         transform.position = new Vector3(pos.x, transform.position.y, pos.z);
     }
 
-    public void OnDrop(Transform targetPos) 
+    public void OnDrop(Transform targetPos)
     {
-        transform.SetParent(targetPos); 
+        transform.SetParent(targetPos);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
+        animator.Play("OnPlace", 0, 0);
     }
 }
