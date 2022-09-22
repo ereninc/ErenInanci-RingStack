@@ -7,7 +7,9 @@ public class PlayerController : ControllerModel
     [SerializeField] PlaceableAreaModel placeableArea;
     [SerializeField] PlaceableAreaModel targetPlaceableArea;
     [SerializeField] RingModel selectedRing;
-    RaycastHit hit;
+
+    private RaycastHit hit;
+    private Ray ray;
 
     public override void Initialize()
     {
@@ -27,7 +29,7 @@ public class PlayerController : ControllerModel
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
                 if (placeableArea = hit.transform.GetComponent<PlaceableAreaModel>())
@@ -46,7 +48,7 @@ public class PlayerController : ControllerModel
         {
             if (selectedRing != null)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
                     if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>())
@@ -60,10 +62,10 @@ public class PlayerController : ControllerModel
 
         if (Input.GetMouseButtonUp(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (targetPlaceableArea == null)
+                if (targetPlaceableArea == null && selectedRing != null)
                 {
                     placeableArea.OnRingPlace(selectedRing);
                     placeableArea.HideGhostRing();
@@ -76,17 +78,14 @@ public class PlayerController : ControllerModel
                     if (targetPlaceableArea.PlacedRings.Count >= 5)
                     {
                         placeableArea.OnRingPlace(selectedRing);
-                        placeableArea.HideGhostRing();
-                        AreaController.Instance.CheckMoves();
-                        targetPlaceableArea = null;
                     }
                     else
                     {
                         targetPlaceableArea.OnRingPlace(selectedRing);
-                        AreaController.Instance.CheckMoves();
-                        targetPlaceableArea.HideGhostRing();
-                        targetPlaceableArea = null;
                     }
+                    AreaController.Instance.CheckMoves();
+                    targetPlaceableArea.HideGhostRing();
+                    targetPlaceableArea = null;
                 }
             }
             placeableArea = null;

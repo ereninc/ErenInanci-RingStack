@@ -19,3 +19,5 @@ MonoBehaviour:
     RingColorIds: 01000000010000000000000002000000
   - DummyIndex: 2
     RingColorIds: 01000000020000000200000000000000
+  - DummyIndex: 3
+    RingColorIds: 

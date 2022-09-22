@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class PlaceableAreaModel : ObjectModel
 {
-    public List<RingModel> PlacedRings;
     [SerializeField] Transform[] ringPositions;
     [SerializeField] DummyModel dummyModel;
     [SerializeField] GhostRingModel ghostRingModel;
+
+    public List<RingModel> PlacedRings;
+
     private int correctCounter;
 
     public override void Initialize()
@@ -76,11 +78,6 @@ public class PlaceableAreaModel : ObjectModel
         {
             PlacedRings[i].Initialize();
         }
-    }
-
-    private void onFailMove() 
-    {
-        
     }
 }
 

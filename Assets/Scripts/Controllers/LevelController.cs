@@ -34,11 +34,6 @@ public class LevelController : ControllerModel
         LoadedLevel = Levels[0];
     }
 
-    public void NextLevel()
-    {
-        //INCREASE LEVEL INDEX
-    }
-
     public void E_SaveLevel()
     {
 #if UNITY_EDITOR
@@ -59,13 +54,6 @@ public class LevelController : ControllerModel
     private LevelModel getActiveLevel()
     {
         LevelModel levelData = ScriptableObject.CreateInstance<LevelModel>();
-        //AreaModel[] areas = FindObjectsOfType<AreaModel>();
-        //levelData.AreaDatas = new AreaDataModel[areas.Length];
-        //for (int i = 0; i < areas.Length; i++)
-        //{
-            //levelData.AreaDatas[i] = areas[i].GetDataModel();
-        //    areas[i].SetDeactive();
-        //}
         return levelData;
     }
 }

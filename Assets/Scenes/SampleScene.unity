@@ -769,9 +769,9 @@ MonoBehaviour:
   initializedElements:
   - {fileID: 2128005899}
   - {fileID: 754819686}
+  - {fileID: 2042620551}
   - {fileID: 757966498}
   - {fileID: 291359324}
-  - {fileID: 2042620551}
   - {fileID: 1333089699}
   initializeOnAwake: 1
 --- !u!4 &536332166 stripped

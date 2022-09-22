@@ -5,9 +5,10 @@ using DG.Tweening;
 
 public class RingModel : ObjectModel
 {
-    public int ColorId;
     [SerializeField] Transform[] gfxs;
     [SerializeField] Animator animator;
+
+    public int ColorId;
 
     public override void Initialize()
     {
