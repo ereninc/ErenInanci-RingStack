@@ -16,7 +16,7 @@ public class DummyModel : ObjectModel
     {
         if (isRinged)
         {
-            //animator.Play("DummyJump", 0, 0);
+            animator.Play("DummyJump", 0, 0);
         }
         else
         {
