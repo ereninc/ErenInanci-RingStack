@@ -17,7 +17,10 @@ public class PlayerController : ControllerModel
     public override void ControllerUpdate()
     {
         base.ControllerUpdate();
-        getMouseInput();
+        if (GameStateController.CurrentState == GameStates.Game)
+        {
+            getMouseInput();
+        }
     }
 
     private void getMouseInput()
@@ -31,12 +34,9 @@ public class PlayerController : ControllerModel
                 {
                     if (placeableArea.PlacedRings.Count > 0)
                     {
-                        //Debug.Log("THERE ARE RINGS");
                         selectedRing = placeableArea.GetRing();
-                    }
-                    else
-                    {
-                        //Debug.Log("THERE ARE NO RINGS");
+                        selectedRing.OnTake();
+                        placeableArea.OnRingRemove(selectedRing);
                     }
                 }
             }
@@ -49,21 +49,25 @@ public class PlayerController : ControllerModel
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>())
-                    selectedRing.OnTake(hit.point);
+                    if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>()) { }
+                    selectedRing.OnDrag(hit.point);
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (targetPlaceableArea != null)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
             {
-                targetPlaceableArea.OnRingPlace(selectedRing);
-                placeableArea.OnRingRemove(selectedRing);
-                AreaController.Instance.CheckMoves();
+                if (targetPlaceableArea = hit.transform.GetComponent<PlaceableAreaModel>())
+                {
+                    placeableArea.OnRingRemove(selectedRing);
+                    targetPlaceableArea.OnRingPlace(selectedRing);
+                    AreaController.Instance.CheckMoves();
+                    targetPlaceableArea = null;
+                }
             }
-            targetPlaceableArea = null;
             placeableArea = null;
             selectedRing = null;
         }

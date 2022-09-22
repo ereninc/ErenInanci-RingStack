@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class RingModel : ObjectModel
 {
@@ -13,9 +14,14 @@ public class RingModel : ObjectModel
         gfxs[ColorId].transform.gameObject.SetActive(true);
     }
 
-    public void OnTake(Vector3 pos) 
+    public void OnTake()
     {
-        transform.position = pos;
+        transform.DOMoveY(9f, 0.15f);
+    }
+
+    public void OnDrag(Vector3 pos) 
+    {
+        transform.position = new Vector3(pos.x, transform.position.y, pos.z);
     }
 
     public void OnDrop(Transform targetPos) 

@@ -7,6 +7,7 @@ public class PlaceableAreaModel : ObjectModel
 {
     public List<RingModel> PlacedRings;
     [SerializeField] Transform[] ringPositions;
+    [SerializeField] DummyModel dummyModel;
     private int correctCounter;
 
     public override void Initialize()
@@ -26,6 +27,7 @@ public class PlaceableAreaModel : ObjectModel
         {
             PlacedRings.Add(ring);
             ring.OnDrop(ringPositions[PlacedRings.Count - 1]);
+            dummyModel.SetRinged(true);
         }
     }
 
@@ -35,6 +37,7 @@ public class PlaceableAreaModel : ObjectModel
         {
             PlacedRings.Remove(ring);
         }
+        if (PlacedRings.Count == 0) dummyModel.SetRinged(false);
     }
 
     private void setRings()

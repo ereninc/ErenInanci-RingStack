@@ -7,6 +7,7 @@ public class AreaController : ObjectModel
 {
     public static AreaController Instance;
     [SerializeField] List<PlaceableAreaModel> areas;
+    [SerializeField] DummyController dummyController;
     private int completedAreaCount;
 
     public override void Initialize()
@@ -42,6 +43,8 @@ public class AreaController : ObjectModel
                 if (completedAreaCount == areas.Count - 1)
                 {
                     ScreenController.Instance.ShowScreen(0);
+                    GameStateController.Instance.ChangeState(GameStates.End);
+                    dummyController.OnLevelCompleted();
                 }
             }
         }

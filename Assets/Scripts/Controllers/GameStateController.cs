@@ -6,6 +6,7 @@ public class GameStateController : ControllerModel
 {
     public static GameStateController Instance;
     public static GameStates CurrentState;
+    public GameStates ActiveState;
 
     public override void Initialize()
     {
@@ -24,5 +25,6 @@ public class GameStateController : ControllerModel
     public void ChangeState(GameStates state)
     {
         CurrentState = state;
+        ActiveState = state;
     }
 }
